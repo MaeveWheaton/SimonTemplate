@@ -18,6 +18,7 @@ namespace SimonSays
         int guessIndex;
         int pause = 500;
         Random rand = new Random();
+        Matrix transformMatrix = new Matrix();
 
         //pyro, cryo, hydro, anemo
         List<Color> darkColours = new List<Color>(new Color[] { Color.DarkRed, Color.ForestGreen, Color.Goldenrod, Color.DarkBlue });
@@ -26,9 +27,7 @@ namespace SimonSays
         List<SoundPlayer> gameSounds = new List<SoundPlayer>(new SoundPlayer[] {
             new SoundPlayer(Properties.Resources.red), new SoundPlayer(Properties.Resources.green), 
             new SoundPlayer(Properties.Resources.yellow), new SoundPlayer(Properties.Resources.blue), 
-            new SoundPlayer(Properties.Resources.mistake), });
-
-        new GraphicsPath circlePath = new GraphicsPath();
+            new SoundPlayer(Properties.Resources.mistake), }); 
 
         public GameScreen()
         {
@@ -49,22 +48,51 @@ namespace SimonSays
 
         public void ShapeButtons()
         {
-            circlePath.AddEllipse(5, 5, 283, 252);
-            redButton.Region = new Region(circlePath);
+            GraphicsPath redPath = new GraphicsPath();
+            GraphicsPath greenPath = new GraphicsPath();
+            GraphicsPath yellowPath = new GraphicsPath();
+            GraphicsPath bluePath = new GraphicsPath();
 
-            greenButton.Region = new Region(circlePath);
+            redPath.AddEllipse(5, 5, 220, 220);
+            greenPath.AddEllipse(5, 5, 220, 220);
+            yellowPath.AddEllipse(5, 5, 220, 220);
+            bluePath.AddEllipse(5, 5, 220, 220);
 
-            yellowButton.Region = new Region(circlePath);
+            Region redRegion = new Region(redPath);
+            Region greenRegion = new Region(greenPath);
+            Region yellowRegion = new Region(yellowPath);
+            Region blueRegion = new Region(bluePath);
 
-            blueButton.Region = new Region(circlePath);
+            //set each button region then rotate
+            greenRegion.Exclude(new Rectangle(0, 105, 110, 5)); //remove bottom line
+            greenRegion.Exclude(new Rectangle(105, 0, 5, 110)); //remove right line
+            greenButton.Region = greenRegion;
+
+            transformMatrix.RotateAt(90, new PointF(55, 55)); //rotate
+            redRegion.Transform(transformMatrix);
+            redRegion.Exclude(new Rectangle(0, 105, 110, 5)); //remove bottom line
+            redRegion.Exclude(new Rectangle(0, 0, 5, 110));  //remove left line
+            redButton.Region = redRegion;
+
+            transformMatrix.RotateAt(90, new PointF(55, 55)); //rotate
+            blueRegion.Transform(transformMatrix);
+            blueRegion.Exclude(new Rectangle(0, 0, 110, 5));  //remove top line
+            blueRegion.Exclude(new Rectangle(0, 0, 5, 110));  //remove left line
+            blueButton.Region = blueRegion;
+
+            transformMatrix.RotateAt(90, new PointF(55, 55)); //rotate
+            yellowRegion.Transform(transformMatrix);
+            yellowRegion.Exclude(new Rectangle(0, 0, 110, 5));  //remove top line
+            yellowRegion.Exclude(new Rectangle(105, 0, 5, 110)); //remove right line
+            yellowButton.Region = yellowRegion;
         }
 
         private void ComputerTurn()
         {
-            //TODO: get rand num between 0 and 4 (0, 1, 2, 3) and add to pattern list
+            //get rand num between 0 and 4 (0, 1, 2, 3), add to pattern list
             Form1.pattern.Add(rand.Next(0, 4));
 
-            //TODO: create a for loop that shows each value in the pattern by lighting up approriate button
+            //shows each value in the pattern by lighting up approriate button
             for (int i = 0; i < Form1.pattern.Count; i++)
             {
                 switch (Form1.pattern[i])
@@ -104,7 +132,7 @@ namespace SimonSays
                 }    
             }
 
-            //TODO: get guess index value back to 0
+            //set guess index value back to 0
             guessIndex = 0;
         }
 
