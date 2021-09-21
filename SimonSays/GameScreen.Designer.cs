@@ -28,67 +28,67 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.yellowButton = new System.Windows.Forms.Button();
-            this.blueButton = new System.Windows.Forms.Button();
-            this.redButton = new System.Windows.Forms.Button();
-            this.greenButton = new System.Windows.Forms.Button();
+            this.electroButton = new System.Windows.Forms.Button();
+            this.hydroButton = new System.Windows.Forms.Button();
+            this.pyroButton = new System.Windows.Forms.Button();
+            this.cryoButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // yellowButton
+            // electroButton
             // 
-            this.yellowButton.BackColor = System.Drawing.Color.Goldenrod;
-            this.yellowButton.Location = new System.Drawing.Point(107, 355);
-            this.yellowButton.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
-            this.yellowButton.Name = "yellowButton";
-            this.yellowButton.Size = new System.Drawing.Size(293, 262);
-            this.yellowButton.TabIndex = 3;
-            this.yellowButton.UseVisualStyleBackColor = false;
-            this.yellowButton.Click += new System.EventHandler(this.yellowButton_Click);
+            this.electroButton.BackColor = System.Drawing.Color.Indigo;
+            this.electroButton.Location = new System.Drawing.Point(107, 355);
+            this.electroButton.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
+            this.electroButton.Name = "electroButton";
+            this.electroButton.Size = new System.Drawing.Size(293, 262);
+            this.electroButton.TabIndex = 3;
+            this.electroButton.UseVisualStyleBackColor = false;
+            this.electroButton.Click += new System.EventHandler(this.yellowButton_Click);
             // 
-            // blueButton
+            // hydroButton
             // 
-            this.blueButton.BackColor = System.Drawing.Color.DarkBlue;
-            this.blueButton.Location = new System.Drawing.Point(405, 355);
-            this.blueButton.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
-            this.blueButton.Name = "blueButton";
-            this.blueButton.Size = new System.Drawing.Size(293, 262);
-            this.blueButton.TabIndex = 2;
-            this.blueButton.UseVisualStyleBackColor = false;
-            this.blueButton.Click += new System.EventHandler(this.blueButton_Click);
+            this.hydroButton.BackColor = System.Drawing.Color.Navy;
+            this.hydroButton.Location = new System.Drawing.Point(405, 355);
+            this.hydroButton.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
+            this.hydroButton.Name = "hydroButton";
+            this.hydroButton.Size = new System.Drawing.Size(293, 262);
+            this.hydroButton.TabIndex = 2;
+            this.hydroButton.UseVisualStyleBackColor = false;
+            this.hydroButton.Click += new System.EventHandler(this.blueButton_Click);
             // 
-            // redButton
+            // pyroButton
             // 
-            this.redButton.BackColor = System.Drawing.Color.DarkRed;
-            this.redButton.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.redButton.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.redButton.Location = new System.Drawing.Point(405, 88);
-            this.redButton.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
-            this.redButton.Name = "redButton";
-            this.redButton.Size = new System.Drawing.Size(293, 262);
-            this.redButton.TabIndex = 1;
-            this.redButton.UseVisualStyleBackColor = false;
-            this.redButton.Click += new System.EventHandler(this.redButton_Click);
+            this.pyroButton.BackColor = System.Drawing.Color.DarkRed;
+            this.pyroButton.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.pyroButton.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.pyroButton.Location = new System.Drawing.Point(405, 88);
+            this.pyroButton.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
+            this.pyroButton.Name = "pyroButton";
+            this.pyroButton.Size = new System.Drawing.Size(293, 262);
+            this.pyroButton.TabIndex = 1;
+            this.pyroButton.UseVisualStyleBackColor = false;
+            this.pyroButton.Click += new System.EventHandler(this.redButton_Click);
             // 
-            // greenButton
+            // cryoButton
             // 
-            this.greenButton.BackColor = System.Drawing.Color.ForestGreen;
-            this.greenButton.Location = new System.Drawing.Point(107, 88);
-            this.greenButton.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
-            this.greenButton.Name = "greenButton";
-            this.greenButton.Size = new System.Drawing.Size(293, 262);
-            this.greenButton.TabIndex = 0;
-            this.greenButton.UseVisualStyleBackColor = false;
-            this.greenButton.Click += new System.EventHandler(this.greenButton_Click);
+            this.cryoButton.BackColor = System.Drawing.Color.DarkCyan;
+            this.cryoButton.Location = new System.Drawing.Point(107, 88);
+            this.cryoButton.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
+            this.cryoButton.Name = "cryoButton";
+            this.cryoButton.Size = new System.Drawing.Size(293, 262);
+            this.cryoButton.TabIndex = 0;
+            this.cryoButton.UseVisualStyleBackColor = false;
+            this.cryoButton.Click += new System.EventHandler(this.greenButton_Click);
             // 
             // GameScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Black;
-            this.Controls.Add(this.yellowButton);
-            this.Controls.Add(this.blueButton);
-            this.Controls.Add(this.redButton);
-            this.Controls.Add(this.greenButton);
+            this.BackColor = System.Drawing.Color.White;
+            this.Controls.Add(this.electroButton);
+            this.Controls.Add(this.hydroButton);
+            this.Controls.Add(this.pyroButton);
+            this.Controls.Add(this.cryoButton);
             this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "GameScreen";
             this.Size = new System.Drawing.Size(803, 715);
@@ -99,9 +99,9 @@
 
         #endregion
 
-        private System.Windows.Forms.Button yellowButton;
-        private System.Windows.Forms.Button blueButton;
-        private System.Windows.Forms.Button redButton;
-        private System.Windows.Forms.Button greenButton;
+        private System.Windows.Forms.Button electroButton;
+        private System.Windows.Forms.Button hydroButton;
+        private System.Windows.Forms.Button pyroButton;
+        private System.Windows.Forms.Button cryoButton;
     }
 }

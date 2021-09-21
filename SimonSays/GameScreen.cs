@@ -16,13 +16,13 @@ namespace SimonSays
     {
         //TODO: create guess variable to track what part of the pattern the user is at
         int guessIndex;
-        int pause = 500;
+        int pause = 450;
         Random rand = new Random();
         Matrix transformMatrix = new Matrix();
 
-        //pyro, cryo, hydro, anemo
-        List<Color> darkColours = new List<Color>(new Color[] { Color.DarkRed, Color.ForestGreen, Color.Goldenrod, Color.DarkBlue });
-        List<Color> lightColours = new List<Color>(new Color[] { Color.Red, Color.LimeGreen, Color.Gold, Color.Blue });
+        //pyro, cryo, electro, hydro colours
+        List<Color> darkColours = new List<Color>(new Color[] { Color.DarkRed, Color.DarkCyan, Color.Indigo, Color.Navy });
+        List<Color> lightColours = new List<Color>(new Color[] { Color.OrangeRed, Color.LightSeaGreen, Color.DarkOrchid, Color.DodgerBlue });
 
         List<SoundPlayer> gameSounds = new List<SoundPlayer>(new SoundPlayer[] {
             new SoundPlayer(Properties.Resources.red), new SoundPlayer(Properties.Resources.green), 
@@ -48,43 +48,30 @@ namespace SimonSays
 
         public void ShapeButtons()
         {
-            GraphicsPath redPath = new GraphicsPath();
-            GraphicsPath greenPath = new GraphicsPath();
-            GraphicsPath yellowPath = new GraphicsPath();
-            GraphicsPath bluePath = new GraphicsPath();
+            GraphicsPath circlePath = new GraphicsPath(); //create curved edge and centre hole
+            circlePath.AddEllipse(5, 5, 220, 220);
+            circlePath.AddEllipse(70, 70, 80, 80);
 
-            redPath.AddEllipse(5, 5, 220, 220);
-            greenPath.AddEllipse(5, 5, 220, 220);
-            yellowPath.AddEllipse(5, 5, 220, 220);
-            bluePath.AddEllipse(5, 5, 220, 220);
+            Region buttonRegion = new Region(circlePath);
 
-            Region redRegion = new Region(redPath);
-            Region greenRegion = new Region(greenPath);
-            Region yellowRegion = new Region(yellowPath);
-            Region blueRegion = new Region(bluePath);
+            buttonRegion.Exclude(new Rectangle(0, 105, 110, 5)); //remove outside edges
+            buttonRegion.Exclude(new Rectangle(0, 0, 5, 110));
+            buttonRegion.Exclude(new Rectangle(0, 0, 110, 5));
+            buttonRegion.Exclude(new Rectangle(105, 0, 5, 110));
 
-            //set each button region then rotate
-            greenRegion.Exclude(new Rectangle(0, 105, 110, 5)); //remove bottom line
-            greenRegion.Exclude(new Rectangle(105, 0, 5, 110)); //remove right line
-            greenButton.Region = greenRegion;
+            cryoButton.Region = buttonRegion;
 
             transformMatrix.RotateAt(90, new PointF(55, 55)); //rotate
-            redRegion.Transform(transformMatrix);
-            redRegion.Exclude(new Rectangle(0, 105, 110, 5)); //remove bottom line
-            redRegion.Exclude(new Rectangle(0, 0, 5, 110));  //remove left line
-            redButton.Region = redRegion;
+            buttonRegion.Transform(transformMatrix);
+            pyroButton.Region = buttonRegion;
 
             transformMatrix.RotateAt(90, new PointF(55, 55)); //rotate
-            blueRegion.Transform(transformMatrix);
-            blueRegion.Exclude(new Rectangle(0, 0, 110, 5));  //remove top line
-            blueRegion.Exclude(new Rectangle(0, 0, 5, 110));  //remove left line
-            blueButton.Region = blueRegion;
+            buttonRegion.Transform(transformMatrix);
+            electroButton.Region = buttonRegion;
 
             transformMatrix.RotateAt(90, new PointF(55, 55)); //rotate
-            yellowRegion.Transform(transformMatrix);
-            yellowRegion.Exclude(new Rectangle(0, 0, 110, 5));  //remove top line
-            yellowRegion.Exclude(new Rectangle(105, 0, 5, 110)); //remove right line
-            yellowButton.Region = yellowRegion;
+            buttonRegion.Transform(transformMatrix);
+            hydroButton.Region = buttonRegion;
         }
 
         private void ComputerTurn()
@@ -98,38 +85,44 @@ namespace SimonSays
                 switch (Form1.pattern[i])
                 {
                     case 0:
-                        redButton.BackColor = lightColours[0];
-                        redButton.Refresh();
+                        pyroButton.BackColor = lightColours[0];
+                        pyroButton.Refresh();
                         Thread.Sleep(pause);
-                        redButton.BackColor = darkColours[0];
-                        redButton.Refresh();
+                        pyroButton.BackColor = darkColours[0];
+                        pyroButton.Refresh();
                         Thread.Sleep(pause);
                         break;
                     case 1:
-                        greenButton.BackColor = lightColours[1];
-                        greenButton.Refresh();
+                        cryoButton.BackColor = lightColours[1];
+                        cryoButton.Refresh();
                         Thread.Sleep(pause);
-                        greenButton.BackColor = darkColours[1];
-                        greenButton.Refresh();
+                        cryoButton.BackColor = darkColours[1];
+                        cryoButton.Refresh();
                         Thread.Sleep(pause);
                         break;
                     case 2:
-                        yellowButton.BackColor = lightColours[2];
-                        yellowButton.Refresh();
+                        electroButton.BackColor = lightColours[2];
+                        electroButton.Refresh();
                         Thread.Sleep(pause);
-                        yellowButton.BackColor = darkColours[2];
-                        yellowButton.Refresh();
+                        electroButton.BackColor = darkColours[2];
+                        electroButton.Refresh();
                         Thread.Sleep(pause);
                         break;
                     case 3:
-                        blueButton.BackColor = lightColours[3];
-                        blueButton.Refresh();
+                        hydroButton.BackColor = lightColours[3];
+                        hydroButton.Refresh();
                         Thread.Sleep(pause);
-                        blueButton.BackColor = darkColours[3];
-                        blueButton.Refresh();
+                        hydroButton.BackColor = darkColours[3];
+                        hydroButton.Refresh();
                         Thread.Sleep(pause);
                         break;
                 }    
+            }
+
+            //speed up pattern show at 5, 10, 15 colours
+            if (Form1.pattern.Count == 5 || Form1.pattern.Count == 10 || Form1.pattern.Count == 15)
+            {
+                pause -= 50;
             }
 
             //set guess index value back to 0
@@ -156,12 +149,12 @@ namespace SimonSays
         {
             if (Form1.pattern[guessIndex] == 0)
             {
-                redButton.BackColor = lightColours[0];
+                pyroButton.BackColor = lightColours[0];
                 gameSounds[0].Play();
-                redButton.Refresh();
+                pyroButton.Refresh();
                 Thread.Sleep(pause);
-                redButton.BackColor = darkColours[0];
-                redButton.Refresh();
+                pyroButton.BackColor = darkColours[0];
+                pyroButton.Refresh();
                 Thread.Sleep(pause);
 
                 guessIndex++;
@@ -177,7 +170,6 @@ namespace SimonSays
             }
         }
 
-        //TODO: create one of these event methods for each button
         private void greenButton_Click(object sender, EventArgs e)
         {
             //TODO: is the value at current guess index equal to a green. If so:
@@ -189,12 +181,12 @@ namespace SimonSays
                 // else call GameOver method
             if(Form1.pattern[guessIndex] == 1)
             {
-                greenButton.BackColor = lightColours[1];
+                cryoButton.BackColor = lightColours[1];
                 gameSounds[1].Play();
-                greenButton.Refresh();
+                cryoButton.Refresh();
                 Thread.Sleep(pause);
-                greenButton.BackColor = darkColours[1];
-                greenButton.Refresh();
+                cryoButton.BackColor = darkColours[1];
+                cryoButton.Refresh();
                 Thread.Sleep(pause);
 
                 guessIndex++;
@@ -214,12 +206,12 @@ namespace SimonSays
         {
             if (Form1.pattern[guessIndex] == 2)
             {
-                yellowButton.BackColor = lightColours[2];
+                electroButton.BackColor = lightColours[2];
                 gameSounds[2].Play();
-                yellowButton.Refresh();
+                electroButton.Refresh();
                 Thread.Sleep(pause);
-                yellowButton.BackColor = darkColours[2];
-                yellowButton.Refresh();
+                electroButton.BackColor = darkColours[2];
+                electroButton.Refresh();
                 Thread.Sleep(pause);
 
                 guessIndex++;
@@ -239,12 +231,12 @@ namespace SimonSays
         {
             if (Form1.pattern[guessIndex] == 3)
             {
-                blueButton.BackColor = lightColours[3];
+                hydroButton.BackColor = lightColours[3];
                 gameSounds[3].Play();
-                blueButton.Refresh();
+                hydroButton.Refresh();
                 Thread.Sleep(pause);
-                blueButton.BackColor = darkColours[3];
-                blueButton.Refresh();
+                hydroButton.BackColor = darkColours[3];
+                hydroButton.Refresh();
                 Thread.Sleep(pause);
 
                 guessIndex++;
