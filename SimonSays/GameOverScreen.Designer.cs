@@ -33,6 +33,7 @@
             this.patternLabel = new System.Windows.Forms.Label();
             this.lengthLabel = new System.Windows.Forms.Label();
             this.closeButton = new System.Windows.Forms.Button();
+            this.highScoresLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // gameOverLabel
@@ -41,7 +42,7 @@
             this.gameOverLabel.BackColor = System.Drawing.Color.Transparent;
             this.gameOverLabel.Font = new System.Drawing.Font("Mongolian Baiti", 20.1F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gameOverLabel.ForeColor = System.Drawing.Color.White;
-            this.gameOverLabel.Location = new System.Drawing.Point(107, 234);
+            this.gameOverLabel.Location = new System.Drawing.Point(98, 187);
             this.gameOverLabel.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.gameOverLabel.Name = "gameOverLabel";
             this.gameOverLabel.Size = new System.Drawing.Size(563, 73);
@@ -55,7 +56,7 @@
             this.patternLabel.BackColor = System.Drawing.Color.Transparent;
             this.patternLabel.Font = new System.Drawing.Font("Mongolian Baiti", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.patternLabel.ForeColor = System.Drawing.Color.White;
-            this.patternLabel.Location = new System.Drawing.Point(134, 344);
+            this.patternLabel.Location = new System.Drawing.Point(134, 279);
             this.patternLabel.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.patternLabel.Name = "patternLabel";
             this.patternLabel.Size = new System.Drawing.Size(426, 43);
@@ -68,7 +69,7 @@
             this.lengthLabel.BackColor = System.Drawing.Color.Transparent;
             this.lengthLabel.Font = new System.Drawing.Font("Mongolian Baiti", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lengthLabel.ForeColor = System.Drawing.Color.White;
-            this.lengthLabel.Location = new System.Drawing.Point(589, 344);
+            this.lengthLabel.Location = new System.Drawing.Point(570, 279);
             this.lengthLabel.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lengthLabel.Name = "lengthLabel";
             this.lengthLabel.Size = new System.Drawing.Size(39, 43);
@@ -83,14 +84,28 @@
             this.closeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.closeButton.Font = new System.Drawing.Font("Mongolian Baiti", 9.900001F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.closeButton.ForeColor = System.Drawing.Color.White;
-            this.closeButton.Location = new System.Drawing.Point(299, 456);
-            this.closeButton.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.closeButton.Location = new System.Drawing.Point(302, 544);
+            this.closeButton.Margin = new System.Windows.Forms.Padding(5);
             this.closeButton.Name = "closeButton";
             this.closeButton.Size = new System.Drawing.Size(187, 64);
             this.closeButton.TabIndex = 3;
             this.closeButton.Text = "Close";
             this.closeButton.UseVisualStyleBackColor = false;
             this.closeButton.Click += new System.EventHandler(this.closeButton_Click);
+            // 
+            // highScoresLabel
+            // 
+            this.highScoresLabel.AutoSize = true;
+            this.highScoresLabel.BackColor = System.Drawing.Color.Transparent;
+            this.highScoresLabel.Font = new System.Drawing.Font("Mongolian Baiti", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.highScoresLabel.ForeColor = System.Drawing.Color.White;
+            this.highScoresLabel.Location = new System.Drawing.Point(283, 341);
+            this.highScoresLabel.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.highScoresLabel.Name = "highScoresLabel";
+            this.highScoresLabel.Size = new System.Drawing.Size(216, 172);
+            this.highScoresLabel.TabIndex = 4;
+            this.highScoresLabel.Text = "High Scores\r\n0\r\n0\r\n0";
+            this.highScoresLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // GameOverScreen
             // 
@@ -99,11 +114,12 @@
             this.BackColor = System.Drawing.Color.White;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Controls.Add(this.highScoresLabel);
             this.Controls.Add(this.closeButton);
             this.Controls.Add(this.lengthLabel);
             this.Controls.Add(this.patternLabel);
             this.Controls.Add(this.gameOverLabel);
-            this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "GameOverScreen";
             this.Size = new System.Drawing.Size(804, 716);
             this.Load += new System.EventHandler(this.GameOverScreen_Load);
@@ -118,5 +134,6 @@
         private System.Windows.Forms.Label patternLabel;
         private System.Windows.Forms.Label lengthLabel;
         private System.Windows.Forms.Button closeButton;
+        private System.Windows.Forms.Label highScoresLabel;
     }
 }

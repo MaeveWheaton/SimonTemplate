@@ -18,6 +18,7 @@ namespace SimonSays
 
         private void newButton_Click(object sender, EventArgs e)
         {
+            //change to game screen
             Form f = this.FindForm();
             f.Controls.Remove(this);
 

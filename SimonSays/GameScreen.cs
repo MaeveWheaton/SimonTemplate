@@ -14,7 +14,7 @@ namespace SimonSays
 {
     public partial class GameScreen : UserControl
     {
-        //TODO: create guess variable to track what part of the pattern the user is at
+        //create global variables and lists
         int guessIndex;
         int pause = 450;
         Random rand = new Random();
@@ -22,7 +22,7 @@ namespace SimonSays
 
         //pyro, cryo, electro, hydro colours
         List<Color> darkColours = new List<Color>(new Color[] { Color.DarkRed, Color.DarkCyan, Color.Indigo, Color.Navy });
-        List<Color> lightColours = new List<Color>(new Color[] { Color.OrangeRed, Color.LightSeaGreen, Color.DarkOrchid, Color.DodgerBlue });
+        List<Color> lightColours = new List<Color>(new Color[] { Color.OrangeRed, Color.MediumTurquoise, Color.DarkOrchid, Color.DodgerBlue });
 
         List<SoundPlayer> gameSounds = new List<SoundPlayer>(new SoundPlayer[] {
             new SoundPlayer(Properties.Resources.red), new SoundPlayer(Properties.Resources.green), 
@@ -147,22 +147,10 @@ namespace SimonSays
 
         private void redButton_Click(object sender, EventArgs e)
         {
+            //if correct button clicked run button click, else end game
             if (Form1.pattern[guessIndex] == 0)
             {
-                pyroButton.BackColor = lightColours[0];
-                gameSounds[0].Play();
-                pyroButton.Refresh();
-                Thread.Sleep(pause);
-                pyroButton.BackColor = darkColours[0];
-                pyroButton.Refresh();
-                Thread.Sleep(pause);
-
-                guessIndex++;
-
-                if (guessIndex == Form1.pattern.Count)
-                {
-                    ComputerTurn();
-                }
+                ButtonClick();
             }
             else
             {
@@ -172,29 +160,10 @@ namespace SimonSays
 
         private void greenButton_Click(object sender, EventArgs e)
         {
-            //TODO: is the value at current guess index equal to a green. If so:
-                // light up button, play sound, and pause
-                // set button colour back to original
-                // add one to the guess index
-                // check to see if we are at the end of the pattern. If so:
-                    // call ComputerTurn() method
-                // else call GameOver method
-            if(Form1.pattern[guessIndex] == 1)
+            //if correct button clicked run button click, else end game
+            if (Form1.pattern[guessIndex] == 1)
             {
-                cryoButton.BackColor = lightColours[1];
-                gameSounds[1].Play();
-                cryoButton.Refresh();
-                Thread.Sleep(pause);
-                cryoButton.BackColor = darkColours[1];
-                cryoButton.Refresh();
-                Thread.Sleep(pause);
-
-                guessIndex++;
-
-                if(guessIndex == Form1.pattern.Count)
-                {
-                    ComputerTurn();
-                }
+                ButtonClick();
             }
             else
             {
@@ -204,22 +173,10 @@ namespace SimonSays
 
         private void yellowButton_Click(object sender, EventArgs e)
         {
+            //if correct button clicked run button click, else end game
             if (Form1.pattern[guessIndex] == 2)
             {
-                electroButton.BackColor = lightColours[2];
-                gameSounds[2].Play();
-                electroButton.Refresh();
-                Thread.Sleep(pause);
-                electroButton.BackColor = darkColours[2];
-                electroButton.Refresh();
-                Thread.Sleep(pause);
-
-                guessIndex++;
-
-                if (guessIndex == Form1.pattern.Count)
-                {
-                    ComputerTurn();
-                }
+                ButtonClick();
             }
             else
             {
@@ -229,26 +186,67 @@ namespace SimonSays
 
         private void blueButton_Click(object sender, EventArgs e)
         {
+            //if correct button clicked run button click, else end game
             if (Form1.pattern[guessIndex] == 3)
             {
-                hydroButton.BackColor = lightColours[3];
-                gameSounds[3].Play();
-                hydroButton.Refresh();
-                Thread.Sleep(pause);
-                hydroButton.BackColor = darkColours[3];
-                hydroButton.Refresh();
-                Thread.Sleep(pause);
-
-                guessIndex++;
-
-                if (guessIndex == Form1.pattern.Count)
-                {
-                    ComputerTurn();
-                }
+                ButtonClick();
             }
             else
             {
                 GameOver();
+            }
+        }
+
+        public void ButtonClick()
+        {
+            //check button pressed, light up button, play sound, and pause
+            //set button colour back to original
+            switch (Form1.pattern[guessIndex])
+            {
+                case 0:
+                    pyroButton.BackColor = lightColours[0];
+                    gameSounds[0].Play();
+                    pyroButton.Refresh();
+                    Thread.Sleep(pause);
+                    pyroButton.BackColor = darkColours[0];
+                    pyroButton.Refresh();
+                    Thread.Sleep(pause);
+                    break;
+                case 1:
+                    cryoButton.BackColor = lightColours[1];
+                    gameSounds[1].Play();
+                    cryoButton.Refresh();
+                    Thread.Sleep(pause);
+                    cryoButton.BackColor = darkColours[1];
+                    cryoButton.Refresh();
+                    Thread.Sleep(pause);
+                    break;
+                case 2:
+                    electroButton.BackColor = lightColours[2];
+                    gameSounds[2].Play();
+                    electroButton.Refresh();
+                    Thread.Sleep(pause);
+                    electroButton.BackColor = darkColours[2];
+                    electroButton.Refresh();
+                    Thread.Sleep(pause);
+                    break;
+                case 3:
+                    hydroButton.BackColor = lightColours[3];
+                    gameSounds[3].Play();
+                    hydroButton.Refresh();
+                    Thread.Sleep(pause);
+                    hydroButton.BackColor = darkColours[3];
+                    hydroButton.Refresh();
+                    Thread.Sleep(pause);
+                    break;
+            }
+            
+            //add one to guess index, check for end of pattern
+            guessIndex++;
+
+            if (guessIndex == Form1.pattern.Count)
+            {
+                ComputerTurn();
             }
         }
     }

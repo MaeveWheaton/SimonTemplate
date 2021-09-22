@@ -15,6 +15,7 @@ namespace SimonSays
     public partial class Form1 : Form
     {
         public static List<int> pattern = new List<int>();
+        public static List<int> highScores = new List<int>();
 
         public Form1()
         {

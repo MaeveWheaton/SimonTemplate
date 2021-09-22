@@ -21,6 +21,25 @@ namespace SimonSays
             //show the length of the pattern
             int patternLength = Form1.pattern.Count - 1;
             lengthLabel.Text = $"{patternLength}";
+
+            //add to highscores and sort
+            Form1.highScores.Add(patternLength);
+            Form1.highScores.Sort();
+            Form1.highScores.Reverse();
+
+            //remove lowest
+            if (4 <= Form1.highScores.Count)
+            {
+                Form1.highScores.RemoveAt(3);
+            }
+
+            //show highscores
+            highScoresLabel.Text = "High Scores";
+
+            for(int i = 0; i < Form1.highScores.Count; i++)
+            {
+                highScoresLabel.Text += $"\n{Form1.highScores[i]}";
+            }
         }
 
         private void closeButton_Click(object sender, EventArgs e)
