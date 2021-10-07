@@ -54,5 +54,10 @@ namespace SimonSays
             //centre screen on the form
             gs.Location = new Point((f.Width - gs.Width) / 2, (f.Height - gs.Height) / 2);
         }
+
+        private void exitButton_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

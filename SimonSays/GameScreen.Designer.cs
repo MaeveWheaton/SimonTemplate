@@ -32,6 +32,7 @@
             this.hydroButton = new System.Windows.Forms.Button();
             this.pyroButton = new System.Windows.Forms.Button();
             this.cryoButton = new System.Windows.Forms.Button();
+            this.patternCompletedLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // electroButton
@@ -80,11 +81,21 @@
             this.cryoButton.UseVisualStyleBackColor = false;
             this.cryoButton.Click += new System.EventHandler(this.greenButton_Click);
             // 
+            // patternCompletedLabel
+            // 
+            this.patternCompletedLabel.Location = new System.Drawing.Point(315, 334);
+            this.patternCompletedLabel.Name = "patternCompletedLabel";
+            this.patternCompletedLabel.Size = new System.Drawing.Size(181, 39);
+            this.patternCompletedLabel.TabIndex = 4;
+            this.patternCompletedLabel.Text = "patternIndex";
+            this.patternCompletedLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
             // GameScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(250)))), ((int)(((byte)(250)))));
+            this.Controls.Add(this.patternCompletedLabel);
             this.Controls.Add(this.electroButton);
             this.Controls.Add(this.hydroButton);
             this.Controls.Add(this.pyroButton);
@@ -103,5 +114,6 @@
         private System.Windows.Forms.Button hydroButton;
         private System.Windows.Forms.Button pyroButton;
         private System.Windows.Forms.Button cryoButton;
+        private System.Windows.Forms.Label patternCompletedLabel;
     }
 }

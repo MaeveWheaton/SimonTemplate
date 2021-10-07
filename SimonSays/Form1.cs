@@ -1,4 +1,11 @@
-﻿using System;
+﻿/*
+ * Maeve Wheaton
+ * Mr. T
+ * Simon Says: A randomly generated pattern of four colours is shown to the screen one by one, 
+ * the player must repeat the pattern by pressing the appropriate buttons in order.
+*/
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
